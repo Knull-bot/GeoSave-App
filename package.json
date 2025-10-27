@@ -1,0 +1,14 @@
+{
+  "name": "geosave",
+  "version": "1.0.0",
+  "description": "Geolocation Security App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Roman Zorin",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
