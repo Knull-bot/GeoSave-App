@@ -4,17 +4,23 @@ type ButtonProps = {
   children: React.ReactNode;
 };
 
-export default function Button({ children }: ButtonProps) {
+export function SendButton({ children }: ButtonProps) {
   async function handleClick() {
-    navigator.geolocation.getCurrentPosition((position) => {
+    try {
+      const position = await new Promise<GeolocationPosition>(
+        (resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject);
+        }
+      );
       const { latitude, longitude } = position.coords;
-
-      fetch("http://localhost:5050/get-location", {
+      await fetch("/api/send-location", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ latitude, longitude }),
       });
-    });
+    } catch {
+      throw new Error("Failed to send location");
+    }
   }
 
   return <button onClick={handleClick}>{children}</button>;

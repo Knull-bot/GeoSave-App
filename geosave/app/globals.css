@@ -6,3 +6,14 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
+
+body {
+  text-align: center;
+}
+
+.map {
+  text-align: center;
+  height: 500px;
+  width: 50%;
+  margin: 0 auto;
+}
