@@ -15,13 +15,16 @@ export default async function Home() {
       </div>
       <div>
         <h3>Your location:</h3>
-        <div>
-          <MapWrapper
-            position={[events.rows[0].latitude, events.rows[0].longitude]}
-            zoom={25}
-          />
-          <p>{events.rows[0].message}</p>
-        </div>
+        {events.rows[0] && (
+          <div>
+            <MapWrapper
+              position={[events.rows[0].latitude, events.rows[0].longitude]}
+              zoom={25}
+            />
+            <p>{events.rows[0].message}</p>
+          </div>
+        )}
+        {!events.rows[0] && <p>There is no situasions</p>}
       </div>
     </main>
   );

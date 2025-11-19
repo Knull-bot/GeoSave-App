@@ -17,3 +17,11 @@ body {
   width: 50%;
   margin: 0 auto;
 }
+
+.form {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  width: 50%;
+  margin: 0 auto;
+}

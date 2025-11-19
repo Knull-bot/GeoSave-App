@@ -1,7 +1,7 @@
 import { unstable_cache as nextCache } from "next/cache";
 import client from "./db";
 
-export const getEvents = nextCache(async () => {
+export const getEvents = async () => {
   try {
     const events = await client.query("SELECT * FROM events");
     console.log(events);
@@ -9,4 +9,4 @@ export const getEvents = nextCache(async () => {
   } catch {
     throw new Error("Something was wrong");
   }
-});
+};
