@@ -1,6 +1,7 @@
 import { SendButton } from "@/src/components/Button";
+import Link from "next/link";
 
-import { getEvents } from "../lib/events";
+import { getEvents } from "@/lib/events";
 import MapWrapper from "@/src/components/MapWrapper";
 
 export default async function Home() {
@@ -26,6 +27,12 @@ export default async function Home() {
         )}
         {!events.rows[0] && <p>There is no situasions</p>}
       </div>
+      <p>
+        <Link href="/sign-up">Sign Up</Link>
+      </p>
+      <p>
+        <Link href="/sign-in">Sign In</Link>
+      </p>
     </main>
   );
 }

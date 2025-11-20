@@ -10,7 +10,7 @@ export async function POST(req: Request) {
   const date = new Date();
   const OSMdata = await getOSMData(latitude, longitude);
 
-  const OSMtext = OSMdata.map((obj: Record<string, any>) => {
+  const OSMtext = OSMdata.map((obj: Record<string, unknown>) => {
     return Object.entries(obj)
       .map(([key, value]) => `${key}: ${value}`)
       .join(", ");

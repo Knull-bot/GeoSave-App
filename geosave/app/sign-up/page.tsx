@@ -4,10 +4,12 @@ import { useActionState } from "react";
 import { signUp } from "../actions/SignUp";
 
 export default function SignUpForm() {
-  const [state, formAction] = useActionState(signUp, {
+  const [state, formAction] = useActionState<any>(signUp as any, {
     errors: [],
     values: {},
+    isPending: false,
   });
+
   return (
     <>
       <form className="form" action={formAction}>
@@ -50,8 +52,10 @@ export default function SignUpForm() {
           name="plz"
           defaultValue={state?.values.plz ?? ""}
         />
-        <button type="submit">Sign Up</button>
-        {state?.errors.map((error) => (
+        <button type="submit" disabled={state?.isPending}>
+          {state?.isPending ? "Signing Up..." : "Sign Up"}
+        </button>
+        {state?.errors.map((error: string) => (
           <p key={error}>{error}</p>
         ))}
       </form>
