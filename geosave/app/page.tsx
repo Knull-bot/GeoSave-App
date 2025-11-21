@@ -1,7 +1,7 @@
 import { SendButton } from "@/src/components/Button";
 import Link from "next/link";
 
-import { getEvents } from "@/lib/events";
+import { getEvents } from "@/src/lib/events";
 import MapWrapper from "@/src/components/MapWrapper";
 
 export default async function Home() {

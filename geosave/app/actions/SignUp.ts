@@ -1,6 +1,6 @@
 "use server";
 import bcrypt from "bcrypt";
-import client from "../../lib/db";
+import client from "../../src/lib/db";
 
 export async function signUp(prevState: FormData, formData: FormData) {
   function textIsInvalid(value: FormDataEntryValue | null) {

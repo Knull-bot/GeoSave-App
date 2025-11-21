@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CookieConsent from "../src/components/CookieConsent";
+import { SessionProvider } from "next-auth/react";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,8 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <CookieConsent />
-        {children}
+        <SessionProvider>
+          <CookieConsent />
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );

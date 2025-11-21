@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { verifyToken } from "@/lib/jwt";
+import { verifyToken } from "@/src/lib/jwt";
 
 export function middleware(req: NextRequest) {
   const token = req.cookies.get("jwt")?.value || null;
@@ -9,7 +9,7 @@ export function middleware(req: NextRequest) {
     try {
       verifyToken(token);
       return NextResponse.next();
-    } catch (err) {
+    } catch {
       console.log("Invalid token");
     }
   }

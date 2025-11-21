@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import client from "@/lib/db";
+import client from "@/src/lib/db";
 import bcrypt from "bcrypt";
-import { generateToken } from "@/lib/jwt";
+import { generateToken } from "@/src/lib/jwt";
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
     path: "/",
-    maxAge: 3600,
+    maxAge: 10,
   });
 
   return response;

@@ -1,8 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-
+import { useState } from "react";
 export default function SignIn() {
+  const [error, setError] = useState("");
   const router = useRouter();
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -24,7 +25,7 @@ export default function SignIn() {
       router.push("/logged-in");
       router.refresh();
     } else {
-      console.log(data.error);
+      setError(data.error);
     }
   }
 
@@ -35,6 +36,7 @@ export default function SignIn() {
       <label htmlFor="password">Password</label>
       <input type="password" id="password" name="password" />
       <button type="submit">Login</button>
+      {error && <p>{error}</p>}
     </form>
   );
 }

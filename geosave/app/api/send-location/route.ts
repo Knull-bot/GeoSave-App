@@ -1,4 +1,4 @@
-import client from "@/lib/db";
+import client from "@/src/lib/db";
 
 import { getOSMData } from "../../../src/utils/getInfoOpenStreet";
 import { GoogleGenAI } from "@google/genai";
