@@ -1,4 +1,4 @@
-button {
+/* button {
   padding: 10px 20px;
   background-color: #0070f3;
   color: white;
@@ -9,6 +9,8 @@ button {
 
 body {
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 .map {
@@ -24,4 +26,20 @@ body {
   flex-direction: column;
   width: 50%;
   margin: 0 auto;
+} */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }

@@ -2,6 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import classes from "./page.module.css";
+
 export default function SignIn() {
   const [error, setError] = useState("");
   const router = useRouter();
@@ -30,7 +32,7 @@ export default function SignIn() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={classes.container} onSubmit={handleSubmit}>
       <label htmlFor="login">Login</label>
       <input type="text" id="login" name="login" />
       <label htmlFor="password">Password</label>

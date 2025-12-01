@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import CookieConsent from "../src/components/CookieConsent";
-import { SessionProvider } from "next-auth/react";
+import Footer from "../src/components/Footer";
+import logo from "@/src/img/3d.png";
+import Image from "next/image";
+import Link from "next/link";
+import classes from "./layout.module.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,10 +20,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <SessionProvider>
-          <CookieConsent />
-          {children}
-        </SessionProvider>
+        <div className={classes["dashboard-initial-loader"]}>
+          <div>
+            <Image alt="logo" src={logo}></Image>
+          </div>
+
+          <div className={classes["buttons"]}>
+            <Link href="/sign-in" className={classes["btn"]}>
+              Sign In
+            </Link>
+            <Link href="/sign-up" className={classes["btn"]}>
+              Sign Up
+            </Link>
+          </div>
+        </div>
+        <CookieConsent />
+        <main> {children}</main>
+        <Footer />
       </body>
     </html>
   );
