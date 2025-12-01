@@ -1,0 +1,19 @@
+.card {
+  background-color: #457b9d;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  width: 60%;
+}
+
+.cardImg {
+  width: 4rem;
+  height: 4rem;
+  object-fit: contain;
+  margin: 0 auto;
+}

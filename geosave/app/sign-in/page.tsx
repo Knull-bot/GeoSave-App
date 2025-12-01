@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import classes from "./page.module.css";
 
 export default function SignIn() {
   const router = useRouter();
@@ -29,7 +30,7 @@ export default function SignIn() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={classes.container} onSubmit={handleSubmit}>
       <label htmlFor="login">Login</label>
       <input type="text" id="login" name="login" />
       <label htmlFor="password">Password</label>
