@@ -32,13 +32,17 @@ export default function SignIn() {
   }
 
   return (
-    <form className={classes.container} onSubmit={handleSubmit}>
-      <label htmlFor="login">Login</label>
-      <input type="text" id="login" name="login" />
-      <label htmlFor="password">Password</label>
-      <input type="password" id="password" name="password" />
-      <button type="submit">Login</button>
-      {error && <p>{error}</p>}
-    </form>
+    <div className={classes.center}>
+      <form className={classes.form} onSubmit={handleSubmit}>
+        <label htmlFor="login">Login</label>
+        <input type="text" id="login" name="login" />
+        <label htmlFor="password">Password</label>
+        <input type="password" id="password" name="password" />
+        <button className={classes.actions} type="submit">
+          Login
+        </button>
+        {error && <p className={classes.error}>{error}</p>}
+      </form>
+    </div>
   );
 }
