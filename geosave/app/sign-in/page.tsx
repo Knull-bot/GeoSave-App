@@ -41,7 +41,7 @@ export default function SignIn() {
         <button className={classes.actions} type="submit">
           Login
         </button>
-        {error && <p className={classes.error}>{error}</p>}
+        {error && <li className={classes.error}>{error}</li>}
       </form>
     </div>
   );

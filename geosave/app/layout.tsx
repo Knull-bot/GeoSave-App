@@ -22,9 +22,13 @@ export default function RootLayout({
       <body>
         <div className={classes["dashboard-initial-loader"]}>
           <div>
-            <Image alt="logo" src={logo}></Image>
+            <Link href={"/"}>
+              <Image alt="logo" src={logo}></Image>
+            </Link>
           </div>
-
+          <div>
+            <h1>GeoSave</h1>
+          </div>
           <div className={classes["buttons"]}>
             <Link href="/sign-in" className={classes["btn"]}>
               Sign In

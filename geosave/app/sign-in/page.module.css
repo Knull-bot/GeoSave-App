@@ -2,14 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .form {
   border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-  width: 50%;
+  background-color: #a8dadc;
+  padding: 10px;
+  width: 20%;
   margin: 0 auto;
 }
 
@@ -23,22 +23,36 @@
   padding: 12px;
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 1px solid #1d3557;
   border-radius: 4px;
   box-sizing: border-box;
+  background-color: #c5f9fc;
 }
 
 .actions {
-  width: 100%;
-  background-color: #4caf50;
+  background-color: #1d3557;
   color: white;
-  padding: 14px;
-  margin: 8px 0;
+  padding: 0.7rem;
+  margin: 0 auto;
+  width: fit-content;
+  display: block;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .actions:hover {
-  background-color: #45a049;
+  background-color: #4679c1;
+}
+
+body {
+  margin: 0;
+  background-color: #a8dadc;
+}
+
+.error {
+  color: red;
+  margin-top: 1rem;
+  list-style-type: none;
+  text-align: center;
 }
