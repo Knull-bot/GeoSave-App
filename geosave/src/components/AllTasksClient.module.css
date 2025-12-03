@@ -1,0 +1,53 @@
+.wrapper {
+  display: flex;
+  min-height: 85vh;
+}
+
+.sidebar {
+  width: 18rem;
+  padding: 2rem;
+  background-color: #457b9d;
+  color: #fafaf9;
+  border-right: 1px solid #444;
+}
+
+.content {
+  flex: 1;
+  padding: 2rem;
+}
+
+.list {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.button {
+  width: 100%;
+  text-align: left;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: #27272a;
+  color: #fafaf9;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #3f3f46;
+}
+
+.pworking {
+  color: #a1a1aa;
+}
+
+.h2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}

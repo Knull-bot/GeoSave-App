@@ -1,8 +1,7 @@
 "use client";
 
-"use client";
-
 import dynamic from "next/dynamic";
+import classes from "./Map.module.css";
 
 const MapContainer = dynamic(
   () => import("react-leaflet").then((mod) => mod.MapContainer),
@@ -32,7 +31,7 @@ export default function Map(props: MapProps) {
   const { position, zoom } = props;
   return (
     <MapContainer
-      className="map"
+      className={classes.map}
       center={position}
       zoom={zoom}
       scrollWheelZoom={false}
