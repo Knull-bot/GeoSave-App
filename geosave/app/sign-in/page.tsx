@@ -23,11 +23,15 @@ export default function SignIn() {
 
     const data = await res.json();
 
-    if (res.ok) {
-      router.push("/logged-in");
-      router.refresh();
+    if (!res.ok) {
+      setError(data.error || "Ein unbekannter Fehler ist aufgetreten");
+      return;
+    }
+
+    if (data.role === "admin") {
+      router.push("/all-tasks");
     } else {
-      setError(data.error);
+      router.push("/savebutton");
     }
   }
 

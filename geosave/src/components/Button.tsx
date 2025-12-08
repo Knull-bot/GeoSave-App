@@ -1,10 +1,8 @@
 "use client";
 
-type ButtonProps = {
-  children: React.ReactNode;
-};
+import classes from "./Button.module.css";
 
-export function SendButton({ children }: ButtonProps) {
+export function SendButton() {
   async function handleClick() {
     try {
       const position = await new Promise<GeolocationPosition>(
@@ -23,5 +21,5 @@ export function SendButton({ children }: ButtonProps) {
     }
   }
 
-  return <button onClick={handleClick}>{children}</button>;
+  return <button className={classes.button} onClick={handleClick}></button>;
 }

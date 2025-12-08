@@ -1,25 +1,40 @@
+import { jwtVerify } from "jose";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { verifyToken } from "@/src/lib/jwt";
 
-export function middleware(req: NextRequest) {
-  const token = req.cookies.get("jwt")?.value || null;
+export async function middleware(req: NextRequest) {
+  const token = req.cookies.get("jwt")?.value;
+  const url = req.nextUrl.clone();
+  const path = req.nextUrl.pathname;
 
-  if (token) {
-    try {
-      verifyToken(token);
-      return NextResponse.next();
-    } catch {
-      console.log("Invalid token");
+  if (!token) {
+    if (path === "/savebutton" || path === "/all-tasks") {
+      url.pathname = "/sign-in";
+      url.searchParams.set("from", path);
+      return NextResponse.redirect(url);
     }
+
+    return NextResponse.next();
   }
 
-  const url = req.nextUrl.clone();
-  url.pathname = "/sign-in";
-  url.searchParams.set("from", req.nextUrl.pathname);
-  return NextResponse.redirect(url);
+  try {
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+    const { payload } = await jwtVerify(token, secret);
+
+    if (path.startsWith("/all-tasks") && payload.role !== "admin") {
+      url.pathname = "/forbidden";
+      return NextResponse.redirect(url);
+    }
+
+    return NextResponse.next();
+  } catch (err) {
+    console.error("JWT error:", err);
+    url.pathname = "/sign-in";
+    url.searchParams.set("from", path);
+    return NextResponse.redirect(url);
+  }
 }
 
 export const config = {
-  matcher: ["/logged-in/:path*", "/dashboard/:path*"],
+  matcher: ["/savebutton", "/all-tasks", "/admin/:path*"],
 };
