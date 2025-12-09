@@ -55,7 +55,7 @@ Local PostgreSQL database stores users and requests.
 Clone the repository:
 
 git clone https://github.com/Knull-bot/GeoSave-App.git
-cd GeoSave-App
+cd geosave
 
 
 Install dependencies:
