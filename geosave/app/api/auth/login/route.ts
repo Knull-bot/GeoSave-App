@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
     username: user.username,
     role: user.role,
   });
-  const response = NextResponse.json({ success: true });
+  const response = NextResponse.json({ success: true, role: user.role });
   response.cookies.set({
     name: "jwt",
     value: token,

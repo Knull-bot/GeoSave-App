@@ -28,10 +28,12 @@ export default function SignIn() {
       return;
     }
 
+    console.log(data.role);
+
     if (data.role === "admin") {
-      router.push("/all-tasks");
+      window.location.href = "/all-tasks";
     } else {
-      router.push("/savebutton");
+      window.location.href = "/savebutton";
     }
   }
 

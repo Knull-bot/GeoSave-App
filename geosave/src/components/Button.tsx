@@ -23,3 +23,19 @@ export function SendButton() {
 
   return <button className={classes.button} onClick={handleClick}></button>;
 }
+
+export function LogoutButton() {
+  async function handleLogout() {
+    await fetch("/api/auth/logout", {
+      method: "POST",
+      credentials: "include",
+    });
+    window.location.href = "/";
+  }
+
+  return (
+    <button className={classes.btn} onClick={handleLogout}>
+      Logout
+    </button>
+  );
+}

@@ -36,3 +36,16 @@
   align-items: center;
   height: 80vh;
 }
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #1d3557;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  gap: 1rem;
+  margin: 1rem;
+}
