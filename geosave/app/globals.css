@@ -1,33 +1,3 @@
-/* button {
-  padding: 10px 20px;
-  background-color: #0070f3;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-body {
-  text-align: center;
-  margin: 0;
-  padding: 0;
-}
-
-.map {
-  text-align: center;
-  height: 500px;
-  width: 50%;
-  margin: 0 auto;
-}
-
-.form {
-  display: flex;
-  gap: 1rem;
-  flex-direction: column;
-  width: 50%;
-  margin: 0 auto;
-} */
-
 html,
 body {
   height: 100%;
@@ -38,6 +8,7 @@ body {
 body {
   display: flex;
   flex-direction: column;
+  color: #01200f;
 }
 
 main {

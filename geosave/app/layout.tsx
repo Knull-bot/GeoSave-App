@@ -4,6 +4,12 @@ import Footer from "../src/components/Footer";
 import { cookies } from "next/headers";
 import { verifyToken } from "@/src/lib/jwt";
 import { HeaderController } from "../src/components/HeaderController";
+import { Roboto } from "next/font/google";
+
+const roboto = Roboto({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+});
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -33,7 +39,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className={roboto.className}>
         <CookieConsent />
         <HeaderController />
         <main> {children}</main>

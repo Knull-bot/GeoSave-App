@@ -21,7 +21,7 @@ export default function AllTasksClient({ events }: Props) {
 
         <ul className={classes.list}>
           {events.map((event) => (
-            <li key={event.id}>
+            <li key={event.id} className={classes["list-item"]}>
               <button
                 className={classes.button}
                 onClick={() => setSelectedId(event.id)}
@@ -31,7 +31,6 @@ export default function AllTasksClient({ events }: Props) {
             </li>
           ))}
         </ul>
-        <SendButton>Pin Location </SendButton>
       </aside>
 
       <main className={classes.content}>

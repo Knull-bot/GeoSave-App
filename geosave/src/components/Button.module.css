@@ -38,6 +38,7 @@
 }
 
 .btn {
+  all: unset;
   display: inline-block;
   padding: 0.5rem 1rem;
   background-color: #1d3557;
@@ -48,4 +49,8 @@
   text-align: center;
   gap: 1rem;
   margin: 1rem;
+}
+
+.btn:hover {
+  background-color: #ffdc5f;
 }
