@@ -22,7 +22,7 @@
 .links .btn {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #fec601;
+  background-color: #95cbdf;
   color: white;
   border: none;
   border-radius: 5px;
@@ -33,7 +33,7 @@
 }
 
 .links .btn:hover {
-  background-color: #ffcb2f;
+  background-color: #4679c1;
 }
 
 .cards {

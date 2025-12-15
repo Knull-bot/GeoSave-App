@@ -1,6 +1,6 @@
 "use client";
 
-import logo from "@/src/img/3d.png";
+import logo from "@/src/img/bird.png";
 import Image from "next/image";
 import Link from "next/link";
 import classes from "./Header.module.css";

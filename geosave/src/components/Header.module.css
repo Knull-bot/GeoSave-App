@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #2b4570;
+  background-color: #104788;
 }
 
 .dashboard-initial-loader img {
@@ -16,7 +16,7 @@
 .dashboard-initial-loader .btn {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background-color: #fec601;
+  background-color: #95cbdf;
   color: white;
   border: none;
   border-radius: 5px;

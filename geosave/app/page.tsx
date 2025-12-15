@@ -1,6 +1,6 @@
 import classes from "./page.module.css";
 import Link from "next/link";
-import logo from "@/src/img/3d.png";
+import logo from "@/src/img/bird.png";
 import Image from "next/image";
 import Card from "@/src/components/Card";
 import pcImg from "@/src/img/computer.png";
