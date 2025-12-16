@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import classes from "./Header.module.css";
 import { LogoutButton } from "./Button";
+import { usePathname } from "next/navigation";
 
 export function HeaderAdmin() {
   return (
@@ -49,26 +50,36 @@ export function HeaderUser() {
 }
 
 export function MainHeader({ hideButtons }: { hideButtons?: boolean }) {
+  const pathname = usePathname();
+
+  const isSigning = pathname === "/sign-in";
+  const isSigningUp = pathname === "/sign-up";
   return (
     <div className={classes["dashboard-initial-loader"]}>
-      <div>
+      <div className={classes.left}>
         <Link href={"/"}>
           <Image alt="logo" src={logo}></Image>
         </Link>
       </div>
-      <div>
+      <div className={classes.center}>
         <h1>GeoSave</h1>
       </div>
-      {!hideButtons && (
-        <div className={classes["buttons"]}>
-          <Link href="/sign-in" className={classes["btn"]}>
-            Sign In
-          </Link>
-          <Link href="/sign-up" className={classes["btn"]}>
-            Sign Up
-          </Link>
-        </div>
-      )}
+      <div className={classes.right}>
+        <Link
+          href="/sign-in"
+          className={classes["btn"]}
+          style={{ display: isSigning ? "none" : "block" }}
+        >
+          Sign In
+        </Link>
+        <Link
+          href="/sign-up"
+          className={classes["btn"]}
+          style={{ display: isSigningUp ? "none" : "block" }}
+        >
+          Sign Up
+        </Link>
+      </div>
     </div>
   );
 }

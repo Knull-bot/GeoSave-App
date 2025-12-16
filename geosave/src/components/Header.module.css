@@ -1,11 +1,30 @@
 .dashboard-initial-loader {
-  margin: 0;
-  padding: 0;
+  position: relative;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   background-color: #104788;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.left,
+.center {
+  flex: 1;
+}
+
+.right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.center {
+  text-align: center;
 }
 
 .dashboard-initial-loader img {
@@ -32,8 +51,4 @@
 }
 body {
   margin: 0;
-}
-
-.dashboard-initial-loader h1 {
-  padding-left: 10rem;
 }
