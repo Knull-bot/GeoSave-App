@@ -48,7 +48,7 @@ export function HeaderUser() {
   );
 }
 
-export function MainHeader() {
+export function MainHeader({ hideButtons }: { hideButtons?: boolean }) {
   return (
     <div className={classes["dashboard-initial-loader"]}>
       <div>
@@ -59,14 +59,16 @@ export function MainHeader() {
       <div>
         <h1>GeoSave</h1>
       </div>
-      <div className={classes["buttons"]}>
-        <Link href="/sign-in" className={classes["btn"]}>
-          Sign In
-        </Link>
-        <Link href="/sign-up" className={classes["btn"]}>
-          Sign Up
-        </Link>
-      </div>
+      {!hideButtons && (
+        <div className={classes["buttons"]}>
+          <Link href="/sign-in" className={classes["btn"]}>
+            Sign In
+          </Link>
+          <Link href="/sign-up" className={classes["btn"]}>
+            Sign Up
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

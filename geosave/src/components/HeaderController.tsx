@@ -1,9 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { HeaderAdmin, HeaderUser, MainHeader } from "./Header";
 
 export const HeaderController = () => {
   const [role, setRole] = useState<"admin" | "user" | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     fetch("/api/auth/userRole", { credentials: "include" })
@@ -12,6 +14,9 @@ export const HeaderController = () => {
       .catch(() => setRole(null));
   }, []);
 
+  if (pathname === "/sign-in" || pathname === "/sign-up") {
+    return <MainHeader hideButtons={true} />;
+  }
   if (role === "admin") return <HeaderAdmin />;
   if (role === "user") return <HeaderUser />;
   return <MainHeader />;

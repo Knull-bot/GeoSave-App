@@ -4,11 +4,18 @@ import Footer from "../src/components/Footer";
 import { cookies } from "next/headers";
 import { verifyToken } from "@/src/lib/jwt";
 import { HeaderController } from "../src/components/HeaderController";
-import { Roboto } from "next/font/google";
+import { Roboto, BBH_Sans_Bartle } from "next/font/google";
 
 const roboto = Roboto({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
+  variable: "--font-roboto",
+});
+
+const bbh = BBH_Sans_Bartle({
+  weight: ["400"],
+  subsets: ["latin"],
+  variable: "--font-bbh",
 });
 import "./globals.css";
 
@@ -39,7 +46,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={roboto.className}>
+      <body className={`${roboto.variable} ${bbh.variable}`}>
         <CookieConsent />
         <HeaderController />
         <main> {children}</main>

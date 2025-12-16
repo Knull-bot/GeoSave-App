@@ -38,16 +38,14 @@
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 0rem;
-  width: 100%;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+  justify-content: center;
+  gap: 12rem;
 }
 
-.description {
+.main-title p {
+  margin: 0.5rem 0;
   text-align: center;
-  margin: 2rem;
-  font-weight: 400;
 }
 
 body {

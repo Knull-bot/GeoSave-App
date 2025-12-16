@@ -9,8 +9,13 @@ body {
   display: flex;
   flex-direction: column;
   color: #01200f;
+  font-family: var(--font-roboto);
 }
 
 main {
   flex: 1;
+}
+
+h1 {
+  font-family: var(--font-bbh);
 }
