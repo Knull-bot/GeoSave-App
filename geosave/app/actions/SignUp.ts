@@ -23,8 +23,8 @@ export async function signUp(prevState: FormData, formData: FormData) {
     passwordCopie: formData.get("repeatPass"),
     city: formData.get("ort"),
     street: formData.get("street"),
-    house: Number(formData.get("house")) as number,
-    plz: Number(formData.get("plz")) as number,
+    house: formData.get("house"),
+    plz: formData.get("plz"),
   };
 
   if (textIsInvalid(user.login)) errors.push("Login darf nicht leer sein.");
@@ -38,6 +38,24 @@ export async function signUp(prevState: FormData, formData: FormData) {
   }
   if (!user.password || String(user.password).length < 8)
     errors.push("Passwort muss mindestens 8 Zeichen haben.");
+
+  const house =
+    typeof user.house === "string" && user.house.trim() !== ""
+      ? Number(user.house)
+      : null;
+
+  const plz =
+    typeof user.plz === "string" && user.plz.trim() !== ""
+      ? Number(user.plz)
+      : null;
+
+  if (house !== null && Number.isNaN(house)) {
+    errors.push("Hausnummer muss eine Zahl sein.");
+  }
+
+  if (plz !== null && Number.isNaN(plz)) {
+    errors.push("PLZ muss eine Zahl sein.");
+  }
 
   //   if (textIsInvalid(user.city)) errors.push("Stadt darf nicht leer sein.");
   //   if (textIsInvalid(user.street)) errors.push("Straße darf nicht leer sein.");
@@ -58,9 +76,10 @@ export async function signUp(prevState: FormData, formData: FormData) {
   }
 
   const hashedPassword = await bcrypt.hash(user.password as string, 10);
+
   await client.query(
     "INSERT INTO users (username, password, city, street, house, plz) VALUES ($1, $2, $3, $4, $5, $6)",
-    [user.login, hashedPassword, user.city, user.street, user.house, user.plz]
+    [user.login, hashedPassword, user.city, user.street, house, plz]
   );
 
   console.log(user);

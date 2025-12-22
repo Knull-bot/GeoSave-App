@@ -38,9 +38,11 @@
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   justify-content: center;
-  gap: 12rem;
+  gap: 7rem;
+  margin: 3rem auto 5rem auto;
+  max-width: 1200px;
 }
 
 .main-title p {

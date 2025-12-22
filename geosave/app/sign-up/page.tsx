@@ -61,9 +61,13 @@ export default function SignUpForm() {
           >
             {state?.isPending ? "Signing Up..." : "Sign Up"}
           </button>
-          {state?.errors.map((error: string) => (
-            <p key={error}>{error}</p>
-          ))}
+          {state?.errors.length > 0 && (
+            <ul className={classes.error}>
+              {state.errors.map((error: string) => (
+                <li key={error}>{error}</li>
+              ))}
+            </ul>
+          )}
         </form>
       </div>
     </>

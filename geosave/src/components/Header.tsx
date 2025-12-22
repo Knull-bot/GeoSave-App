@@ -10,15 +10,15 @@ import { usePathname } from "next/navigation";
 export function HeaderAdmin() {
   return (
     <div className={classes["dashboard-initial-loader"]}>
-      <div>
+      <div className={classes.left}>
         <Link href={"/"}>
           <Image alt="logo" src={logo}></Image>
         </Link>
       </div>
-      <div>
+      <div className={classes.center}>
         <h1>GeoSave</h1>
       </div>
-      <div className={classes["buttons"]}>
+      <div className={classes.right}>
         <Link href="/all-tasks" className={classes["btn"]}>
           All Tasks
         </Link>
@@ -31,15 +31,15 @@ export function HeaderAdmin() {
 export function HeaderUser() {
   return (
     <div className={classes["dashboard-initial-loader"]}>
-      <div>
+      <div className={classes.left}>
         <Link href={"/"}>
           <Image alt="logo" src={logo}></Image>
         </Link>
       </div>
-      <div>
+      <div className={classes.center}>
         <h1>GeoSave</h1>
       </div>
-      <div className={classes["buttons"]}>
+      <div className={classes.right}>
         <Link href="/savebutton" className={classes["btn"]}>
           Save Button
         </Link>
@@ -49,7 +49,7 @@ export function HeaderUser() {
   );
 }
 
-export function MainHeader({ hideButtons }: { hideButtons?: boolean }) {
+export function MainHeader() {
   const pathname = usePathname();
 
   const isSigning = pathname === "/sign-in";

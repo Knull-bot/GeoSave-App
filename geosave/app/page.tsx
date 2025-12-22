@@ -29,10 +29,22 @@ export default async function Home() {
         </div>
       </div>
       <div className={classes.cards}>
-        <Card image={pcImg} title="Send location" text="Send location" />
-        <Card image={speedImg} title="Show situation" text="Show situation" />
+        <Card
+          image={pcImg}
+          title="Use your device to send location"
+          text="Its easy and convenient. Be sure that you will become a help when you need it."
+        />
+        <Card
+          image={speedImg}
+          title="It's very fast and easy to use"
+          text="Danger-Button right in yout pocket! "
+        />
 
-        <Card image={diamondImg} title="Send location" text="Send location" />
+        <Card
+          image={diamondImg}
+          title="It's free!"
+          text="Safety of your family is priceless."
+        />
       </div>
     </>
   );

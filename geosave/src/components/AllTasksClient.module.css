@@ -15,12 +15,14 @@
   padding: 2rem;
   background-color: #457b9d;
   color: #fafaf9;
-  border-right: 1px solid #444;
 }
 
 .content {
   flex: 1;
   padding: 2rem;
+  text-align: center;
+  background-color: #457b9d;
+  color: #fafaf9;
 }
 
 .list {
@@ -61,4 +63,29 @@
 
 .list-item {
   list-style: none;
+}
+
+.pagination {
+  display: flex;
+  gap: 0.3rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.pagination button {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #1d3557;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #95cbdf;
+}
+
+.pagination .activePage {
+  background-color: #4679c1;
+  color: white;
+  font-weight: bold;
 }

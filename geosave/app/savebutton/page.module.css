@@ -1,14 +1,13 @@
 .button {
   font-size: 1.5rem;
   padding: 1rem 2rem;
-  background-color: #0070f3;
+  background-color: #f7313a;
   color: white;
   border: none;
   border-radius: 50%;
   width: 16rem;
   height: 16rem;
   cursor: pointer;
-
   animation: pulse 1.5s infinite;
 }
 
@@ -37,4 +36,9 @@
 
 .p {
   margin-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background-color: #dbe9ee;
 }

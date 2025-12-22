@@ -6,14 +6,9 @@
   background-color: #104788;
 }
 
-.center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 .left,
-.center {
+.center,
+.right {
   flex: 1;
 }
 
