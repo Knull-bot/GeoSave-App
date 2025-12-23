@@ -54,13 +54,6 @@ export default function SignUpForm() {
             name="plz"
             defaultValue={state?.values.plz ?? ""}
           />
-          <button
-            type="submit"
-            className={classes.actions}
-            disabled={state?.isPending}
-          >
-            {state?.isPending ? "Signing Up..." : "Sign Up"}
-          </button>
           {state?.errors.length > 0 && (
             <ul className={classes.error}>
               {state.errors.map((error: string) => (
@@ -68,6 +61,13 @@ export default function SignUpForm() {
               ))}
             </ul>
           )}
+          <button
+            type="submit"
+            className={classes.actions}
+            disabled={state?.isPending}
+          >
+            {state?.isPending ? "Signing Up..." : "Sign Up"}
+          </button>
         </form>
       </div>
     </>

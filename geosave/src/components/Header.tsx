@@ -9,43 +9,47 @@ import { usePathname } from "next/navigation";
 
 export function HeaderAdmin() {
   return (
-    <div className={classes["dashboard-initial-loader"]}>
+    <header className={classes["dashboard-initial-loader"]}>
       <div className={classes.left}>
         <Link href={"/"}>
           <Image alt="logo" src={logo}></Image>
         </Link>
       </div>
       <div className={classes.center}>
-        <h1>GeoSave</h1>
+        <Link href={"/"}>
+          <h1>GeoSave</h1>
+        </Link>
       </div>
-      <div className={classes.right}>
+      <nav className={classes.right}>
         <Link href="/all-tasks" className={classes["btn"]}>
           All Tasks
         </Link>
         <LogoutButton />
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 }
 
 export function HeaderUser() {
   return (
-    <div className={classes["dashboard-initial-loader"]}>
+    <header className={classes["dashboard-initial-loader"]}>
       <div className={classes.left}>
         <Link href={"/"}>
           <Image alt="logo" src={logo}></Image>
         </Link>
       </div>
       <div className={classes.center}>
-        <h1>GeoSave</h1>
+        <Link href={"/"}>
+          <h1>GeoSave</h1>
+        </Link>
       </div>
-      <div className={classes.right}>
+      <nav className={classes.right}>
         <Link href="/savebutton" className={classes["btn"]}>
           Save Button
         </Link>
         <LogoutButton />
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 }
 
@@ -55,16 +59,18 @@ export function MainHeader() {
   const isSigning = pathname === "/sign-in";
   const isSigningUp = pathname === "/sign-up";
   return (
-    <div className={classes["dashboard-initial-loader"]}>
+    <header className={classes["dashboard-initial-loader"]}>
       <div className={classes.left}>
         <Link href={"/"}>
           <Image alt="logo" src={logo}></Image>
         </Link>
       </div>
       <div className={classes.center}>
-        <h1>GeoSave</h1>
+        <Link href={"/"}>
+          <h1>GeoSave</h1>
+        </Link>
       </div>
-      <div className={classes.right}>
+      <nav className={classes.right}>
         <Link
           href="/sign-in"
           className={classes["btn"]}
@@ -79,7 +85,7 @@ export function MainHeader() {
         >
           Sign Up
         </Link>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 }

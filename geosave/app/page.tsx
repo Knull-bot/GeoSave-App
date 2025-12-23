@@ -10,42 +10,44 @@ import speedImg from "@/src/img/layer.png";
 export default async function Home() {
   return (
     <>
-      <div className={classes["main-title"]}>
-        <Image alt="logo" src={logo}></Image>
-        <h1 className={classes.title}>Welcome to GeoSave</h1>
-        <p className={classes.description}>
-          Its your personal alarm-button for your safety and safety of ypur
-          loved ones.
-        </p>
-        <p>Its free, secure and easy to use. Get started now!</p>
-        <div className={classes.links}>
-          <Link href="/sign-up" className={classes.btn}>
-            Sign Up
-          </Link>
+      <main className={classes.main}>
+        <div className={classes["main-title"]}>
+          <Image alt="logo" src={logo}></Image>
+          <h1 className={classes.title}>Welcome to GeoSave</h1>
+          <p className={classes.description}>
+            Its your personal alarm-button for your safety and safety of your
+            loved ones.
+          </p>
+          <p>Its free, secure and easy to use. Get started now!</p>
+          <div className={classes.links}>
+            <Link href="/sign-up" className={classes.btn}>
+              Sign Up
+            </Link>
 
-          <Link href="/sign-in" className={classes.btn}>
-            Sign In
-          </Link>
+            <Link href="/sign-in" className={classes.btn}>
+              Sign In
+            </Link>
+          </div>
         </div>
-      </div>
-      <div className={classes.cards}>
-        <Card
-          image={pcImg}
-          title="Use your device to send location"
-          text="Its easy and convenient. Be sure that you will become a help when you need it."
-        />
-        <Card
-          image={speedImg}
-          title="It's very fast and easy to use"
-          text="Danger-Button right in yout pocket! "
-        />
+        <div className={classes.cards}>
+          <Card
+            image={pcImg}
+            title="Use your device to send location"
+            text="Its easy and convenient. Be sure that you will become a help when you need it."
+          />
+          <Card
+            image={speedImg}
+            title="It's very fast and easy to use"
+            text="Danger-Button right in yout pocket! "
+          />
 
-        <Card
-          image={diamondImg}
-          title="It's free!"
-          text="Safety of your family is priceless."
-        />
-      </div>
+          <Card
+            image={diamondImg}
+            title="It's free!"
+            text="Safety of your family is priceless."
+          />
+        </div>
+      </main>
     </>
   );
 }

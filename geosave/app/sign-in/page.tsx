@@ -44,10 +44,10 @@ export default function SignIn() {
         <input type="text" id="login" name="login" />
         <label htmlFor="password">Password</label>
         <input type="password" id="password" name="password" />
+        {error && <li className={classes.error}>{error}</li>}
         <button className={classes.actions} type="submit">
           Login
         </button>
-        {error && <li className={classes.error}>{error}</li>}
       </form>
     </div>
   );
