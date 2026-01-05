@@ -33,7 +33,6 @@ export async function POST(req: NextRequest) {
 
   const token = generateToken({
     id: user.id,
-    username: user.username,
     role: user.role,
   });
   const response = NextResponse.json({ success: true, role: user.role });
@@ -44,7 +43,7 @@ export async function POST(req: NextRequest) {
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
     path: "/",
-    maxAge: 1000 * 60 * 60,
+    maxAge: 60 * 60,
   });
 
   return response;

@@ -13,7 +13,13 @@ export async function getOSMData(lat, lng) {
   `;
 
   const response = await fetch(url);
-  console.log(response);
+  console.log("status:", response.status);
+  console.log("ok:", response.ok);
+  console.log("content-type:", response.headers.get("content-type"));
+
+  const text = await response.text();
+  console.log("RAW RESPONSE:\n", text);
+
   const data = await response.json();
 
   const result = data.elements.map((el) => el.tags).filter(Boolean);

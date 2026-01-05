@@ -1,62 +1,51 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useState, useEffect } from "react";
+import classes from "./CookieConsent.module.css";
 
 const COOKIE_NAME = "cookie-consent";
-const MAX_AGE = 60 * 60 * 24 * 30;
-
-function getSnapshot(): boolean {
-  if (typeof document === "undefined") return false;
-  return document.cookie
-    .split("; ")
-    .some((row) => row.startsWith(COOKIE_NAME + "="));
-}
-
-function subscribe(onStoreChange: () => void): () => void {
-  window.__cookieConsentCallback = onStoreChange;
-  return () => {
-    delete (window as any).__cookieConsentCallback;
-  };
-}
-
-function setCookieConsent(value: "accepted" | "declined") {
-  document.cookie = `${COOKIE_NAME}=${value}; path=/; max-age=${MAX_AGE}; SameSite=Lax`;
-
-  if ((window as any).__cookieConsentCallback) {
-    (window as any).__cookieConsentCallback();
-  }
-}
 
 export default function CookieConsent() {
-  const hasConsent = useSyncExternalStore(subscribe, getSnapshot, () => false);
+  const [hasConsent, setHasConsent] = useState<boolean | null>(null);
 
-  if (hasConsent) return null;
+  useEffect(() => {
+    const cookie = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith(COOKIE_NAME + "="));
+    setTimeout(() => {
+      setHasConsent(cookie ? true : false);
+    }, 0);
+  }, []);
 
-  const handleAccept = () => setCookieConsent("accepted");
-  const handleDecline = () => setCookieConsent("declined");
+  const setCookieConsent = (value: "accepted" | "declined") => {
+    const maxAge = value === "accepted" ? 60 * 60 * 24 * 30 : 60 * 60 * 24;
+
+    document.cookie = `${COOKIE_NAME}=${value}; path=/; max-age=${maxAge}; SameSite=Lax`;
+    setHasConsent(true);
+  };
+
+  if (hasConsent === null || hasConsent) return null;
+
   return (
-    <div
-      style={{
-        position: "fixed",
-        bottom: 0,
-        width: "100%",
-        background: "#222",
-        color: "#fff",
-        padding: "1rem",
-        textAlign: "center",
-        zIndex: 1,
-      }}
-    >
-      <span>
+    <div className={classes.cookieBanner}>
+      <span className={classes.text}>
         Wir verwenden Cookies, um die Benutzererfahrung zu verbessern. Stimmen
         Sie der Verwendung von Cookies zu?
       </span>
-      <button onClick={handleAccept} style={{ marginLeft: "1rem" }}>
-        Accept
-      </button>
-      <button onClick={handleDecline} style={{ marginLeft: "1rem" }}>
-        Aclaim
-      </button>
+      <div className={classes.buttons}>
+        <button
+          onClick={() => setCookieConsent("accepted")}
+          className={classes.accept}
+        >
+          Accept
+        </button>
+        <button
+          onClick={() => setCookieConsent("declined")}
+          className={classes.decline}
+        >
+          Decline
+        </button>
+      </div>
     </div>
   );
 }

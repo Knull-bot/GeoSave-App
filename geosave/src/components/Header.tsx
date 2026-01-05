@@ -6,6 +6,7 @@ import Link from "next/link";
 import classes from "./Header.module.css";
 import { LogoutButton } from "./Button";
 import { usePathname } from "next/navigation";
+import MobileHeader from "./MobileHeader";
 
 export function HeaderAdmin() {
   return (
@@ -49,6 +50,7 @@ export function HeaderUser() {
         </Link>
         <LogoutButton />
       </nav>
+      <MobileHeader variant="user" />
     </header>
   );
 }
@@ -86,6 +88,7 @@ export function MainHeader() {
           Sign Up
         </Link>
       </nav>
+      <MobileHeader variant="guest" />
     </header>
   );
 }

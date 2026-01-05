@@ -3,7 +3,6 @@
 import { useState } from "react";
 import MapWrapper from "./MapWrapper";
 import classes from "./AllTasksClient.module.css";
-import { SendButton } from "./Button";
 
 type Props = {
   events: any[];

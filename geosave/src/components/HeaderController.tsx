@@ -15,7 +15,7 @@ export const HeaderController = () => {
   }, []);
 
   if (pathname === "/sign-in" || pathname === "/sign-up") {
-    return <MainHeader hideButtons={true} />;
+    return <MainHeader />;
   }
   if (role === "admin") return <HeaderAdmin />;
   if (role === "user") return <HeaderUser />;

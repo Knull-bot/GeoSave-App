@@ -6,8 +6,14 @@ import Card from "@/src/components/Card";
 import pcImg from "@/src/img/computer.png";
 import diamondImg from "@/src/img/diamond.png";
 import speedImg from "@/src/img/layer.png";
+import { verifyToken } from "@/src/lib/jwt";
+import { cookies } from "next/headers";
 
 export default async function Home() {
+  const cookieStore = await cookies();
+  const cookie = cookieStore.get("jwt")?.value;
+  const payLoad = cookie ? verifyToken(cookie) : null;
+  const role = payLoad?.role ?? null;
   return (
     <>
       <main className={classes.main}>
@@ -19,15 +25,17 @@ export default async function Home() {
             loved ones.
           </p>
           <p>Its free, secure and easy to use. Get started now!</p>
-          <div className={classes.links}>
-            <Link href="/sign-up" className={classes.btn}>
-              Sign Up
-            </Link>
+          {role === null && (
+            <div className={classes.links}>
+              <Link href="/sign-up" className={classes.btn}>
+                Sign Up
+              </Link>
 
-            <Link href="/sign-in" className={classes.btn}>
-              Sign In
-            </Link>
-          </div>
+              <Link href="/sign-in" className={classes.btn}>
+                Sign In
+              </Link>
+            </div>
+          )}
         </div>
         <div className={classes.cards}>
           <Card
