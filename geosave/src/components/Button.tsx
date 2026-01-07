@@ -2,7 +2,11 @@
 
 import classes from "./Button.module.css";
 
-export function SendButton() {
+type SendButtonProps = {
+  userId: number | null;
+};
+
+export function SendButton({ userId }: SendButtonProps) {
   async function handleClick() {
     try {
       const position = await new Promise<GeolocationPosition>(
@@ -14,7 +18,7 @@ export function SendButton() {
       await fetch("/api/send-location", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ latitude, longitude }),
+        body: JSON.stringify({ latitude, longitude, userId }),
       });
     } catch {
       throw new Error("Failed to send location");

@@ -4,7 +4,7 @@ import { getOSMData } from "../../../src/utils/getInfoOpenStreet";
 import { GoogleGenAI } from "@google/genai";
 
 export async function POST(req: Request) {
-  const { latitude, longitude } = await req.json();
+  const { latitude, longitude, userId } = await req.json();
   const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
   const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
   const date = new Date();
@@ -48,8 +48,8 @@ export async function POST(req: Request) {
     const customDate = `${formattedDate} ${formattedTime}`;
 
     await client.query(
-      "INSERT INTO events (latitude, longitude, created_at, message) VALUES($1, $2, $3, $4)",
-      [latitude, longitude, customDate, message]
+      "INSERT INTO events (latitude, longitude, created_at, message, user_id) VALUES($1, $2, $3, $4, $5)",
+      [latitude, longitude, customDate, message, userId]
     );
     return new Response(JSON.stringify({ success: true, message: "Succes!" }), {
       status: 200,
@@ -70,12 +70,13 @@ export async function POST(req: Request) {
     const customDate = `${formattedDate} ${formattedTime}`;
 
     await client.query(
-      "INSERT INTO events (latitude, longitude, created_at, message) VALUES($1, $2, $3, $4)",
+      "INSERT INTO events (latitude, longitude, created_at, message, user_id) VALUES($1, $2, $3, $4, $5)",
       [
         latitude,
         longitude,
         customDate,
         "Information about accident was failed to send.",
+        userId,
       ]
     );
     return new Response(

@@ -1,12 +1,11 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import classes from "./page.module.css";
 
 export default function SignIn() {
   const [error, setError] = useState("");
-  const router = useRouter();
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 

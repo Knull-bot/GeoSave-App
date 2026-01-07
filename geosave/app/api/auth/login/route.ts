@@ -34,8 +34,14 @@ export async function POST(req: NextRequest) {
   const token = generateToken({
     id: user.id,
     role: user.role,
+    email: user.email,
   });
-  const response = NextResponse.json({ success: true, role: user.role });
+  const response = NextResponse.json({
+    success: true,
+    id: user.id,
+    role: user.role,
+    email: user.email,
+  });
   response.cookies.set({
     name: "jwt",
     value: token,
@@ -45,6 +51,8 @@ export async function POST(req: NextRequest) {
     path: "/",
     maxAge: 60 * 60,
   });
+
+  console.log(`User ${login} ${user.id} logged in successfully.`);
 
   return response;
 }

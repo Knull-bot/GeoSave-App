@@ -27,7 +27,7 @@ export default function AllTasksClient({ events }: Props) {
   return (
     <div className={classes.wrapper}>
       <aside className={classes.sidebar}>
-        <h2 className={classes.title}>Events</h2>
+        <h2 className={classes.title}>Accidents</h2>
 
         <ul className={classes.list}>
           {currentEvents.map((event) => (
@@ -36,7 +36,15 @@ export default function AllTasksClient({ events }: Props) {
                 className={classes.button}
                 onClick={() => setSelectedId(event.id)}
               >
-                {event.message.slice(0, 30)}
+                {event.username}
+                {" - "}
+                {new Date(event.created_at).toLocaleString("de-DE", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "2-digit",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
               </button>
             </li>
           ))}
@@ -60,7 +68,7 @@ export default function AllTasksClient({ events }: Props) {
       <main className={classes.content}>
         {selectedEvent ? (
           <>
-            <h2 className={classes.h2xl}>Event {selectedEvent.id}</h2>
+            <h2 className={classes.h2xl}>Accident # {selectedEvent.id}</h2>
             <div>
               <MapWrapper
                 position={[

@@ -1,6 +1,7 @@
 "use server";
 import bcrypt from "bcrypt";
 import client from "../../src/lib/db";
+import { redirect } from "next/navigation";
 
 export async function signUp(prevState: FormData, formData: FormData) {
   function textIsInvalid(value: FormDataEntryValue | null) {
@@ -78,9 +79,9 @@ export async function signUp(prevState: FormData, formData: FormData) {
   const hashedPassword = await bcrypt.hash(user.password as string, 10);
 
   await client.query(
-    "INSERT INTO users (username, password, city, street, house, plz) VALUES ($1, $2, $3, $4, $5, $6)",
-    [user.login, hashedPassword, user.city, user.street, house, plz]
+    "INSERT INTO users (username, password, city, role, street, house, plz) VALUES ($1, $2, $3, $4, $5, $6, $7)",
+    [user.login, hashedPassword, user.city, "user", user.street, house, plz]
   );
-
+  redirect("/sign-in");
   console.log(user);
 }
