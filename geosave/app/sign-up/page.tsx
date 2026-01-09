@@ -24,7 +24,7 @@ export default function SignUpForm() {
           />
           <label htmlFor="password">Password*</label>
           <input type="password" id="password" name="password" />
-          <label htmlFor="repeatPass">Repeat password*</label>
+          <label htmlFor="repeatPass">Wiederholen password*</label>
           <input type="password" id="repeatPass" name="repeatPass" />
           <label htmlFor="ort">Stadt</label>
           <input
@@ -66,7 +66,7 @@ export default function SignUpForm() {
             className={classes.actions}
             disabled={state?.isPending}
           >
-            {state?.isPending ? "Signing Up..." : "Sign Up"}
+            {state?.isPending ? "Registrierung läuft..." : "Registrieren"}
           </button>
         </form>
       </div>

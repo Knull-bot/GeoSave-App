@@ -17,7 +17,7 @@ export function generateToken(
 }
 
 export function verifyToken(token: string) {
-  if (!SECRET) throw new Error("JWT_SECRET не определён");
+  if (!SECRET) throw new Error("JWT_SECRET is not defined");
   try {
     return jwt.verify(token, SECRET!) as {
       id: number;

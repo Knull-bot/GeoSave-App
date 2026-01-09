@@ -12,7 +12,7 @@ export default async function SendPage() {
     <>
       <div className={classes.center}>
         <SendButton userId={id}></SendButton>
-        <p className={classes.p}>Send your location to 112</p>
+        <p className={classes.p}>Senden Sie Ihren Standort an 112.</p>
       </div>
     </>
   );

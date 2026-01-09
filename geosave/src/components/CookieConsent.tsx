@@ -37,13 +37,13 @@ export default function CookieConsent() {
           onClick={() => setCookieConsent("accepted")}
           className={classes.accept}
         >
-          Accept
+          Akzeptieren
         </button>
         <button
           onClick={() => setCookieConsent("declined")}
           className={classes.decline}
         >
-          Decline
+          Ablehnen
         </button>
       </div>
     </div>

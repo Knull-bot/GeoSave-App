@@ -8,6 +8,6 @@ export const getEvents = async () => {
     console.log(events);
     return events;
   } catch {
-    throw new Error("Something was wrong");
+    throw new Error("Something went wrong");
   }
 };

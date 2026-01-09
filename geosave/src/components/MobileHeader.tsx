@@ -40,7 +40,7 @@ export default function MobileHeader({ variant }: MobileHeaderProps) {
               className={classes["btn"]}
               onClick={() => setOpen(false)}
             >
-              Save Button
+              Alarm Button
             </Link>
           )}
 
@@ -51,14 +51,14 @@ export default function MobileHeader({ variant }: MobileHeaderProps) {
                 href="/sign-in"
                 onClick={() => setOpen(false)}
               >
-                Sign In
+                Anmelden
               </Link>
               <Link
                 className={classes["btn"]}
                 href="/sign-up"
                 onClick={() => setOpen(false)}
               >
-                Sign Up
+                Registrieren
               </Link>
             </>
           )}

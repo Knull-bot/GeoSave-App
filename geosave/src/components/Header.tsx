@@ -23,7 +23,7 @@ export function HeaderAdmin() {
       </div>
       <nav className={classes.right}>
         <Link href="/all-tasks" className={classes["btn"]}>
-          All Tasks
+          Alle Aufgaben
         </Link>
         <LogoutButton />
       </nav>
@@ -46,7 +46,7 @@ export function HeaderUser() {
       </div>
       <nav className={classes.right}>
         <Link href="/savebutton" className={classes["btn"]}>
-          Save Button
+          Alarm Button
         </Link>
         <LogoutButton />
       </nav>
@@ -78,14 +78,14 @@ export function MainHeader() {
           className={classes["btn"]}
           style={{ display: isSigning ? "none" : "block" }}
         >
-          Sign In
+          Anmelden
         </Link>
         <Link
           href="/sign-up"
           className={classes["btn"]}
           style={{ display: isSigningUp ? "none" : "block" }}
         >
-          Sign Up
+          Registrieren
         </Link>
       </nav>
       <MobileHeader variant="guest" />

@@ -27,7 +27,7 @@ export default function AllTasksClient({ events }: Props) {
   return (
     <div className={classes.wrapper}>
       <aside className={classes.sidebar}>
-        <h2 className={classes.title}>Accidents</h2>
+        <h2 className={classes.title}>Unfälle</h2>
 
         <ul className={classes.list}>
           {currentEvents.map((event) => (
@@ -68,7 +68,7 @@ export default function AllTasksClient({ events }: Props) {
       <main className={classes.content}>
         {selectedEvent ? (
           <>
-            <h2 className={classes.h2xl}>Accident # {selectedEvent.id}</h2>
+            <h2 className={classes.h2xl}>Unfall # {selectedEvent.id}</h2>
             <div>
               <MapWrapper
                 position={[
@@ -78,7 +78,7 @@ export default function AllTasksClient({ events }: Props) {
                 zoom={25}
               />
               <p>
-                <strong>Message:</strong> {selectedEvent.message}
+                <strong>Nachricht:</strong> {selectedEvent.message}
               </p>
             </div>
 
@@ -94,7 +94,7 @@ export default function AllTasksClient({ events }: Props) {
             </p>
           </>
         ) : (
-          <p className={classes.pworking}>Выбери событие слева…</p>
+          <p className={classes.pworking}>Wähle ein Ereignis links aus...</p>
         )}
       </main>
     </div>

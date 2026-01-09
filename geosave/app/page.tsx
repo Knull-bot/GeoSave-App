@@ -19,20 +19,23 @@ export default async function Home() {
       <main className={classes.main}>
         <div className={classes["main-title"]}>
           <Image alt="logo" src={logo}></Image>
-          <h1 className={classes.title}>Welcome to GeoSave</h1>
+          <h1 className={classes.title}>WWillkommen bei GeoSave</h1>
           <p className={classes.description}>
-            Its your personal alarm-button for your safety and safety of your
-            loved ones.
+            Ihr persönlicher Alarmknopf für Ihre eigene Sicherheit und die Ihrer
+            Angehörigen.
           </p>
-          <p>Its free, secure and easy to use. Get started now!</p>
+          <p>
+            Es ist kostenlos, sicher und einfach zu bedienen. Legen Sie jetzt
+            los!
+          </p>
           {role === null && (
             <div className={classes.links}>
               <Link href="/sign-up" className={classes.btn}>
-                Sign Up
+                Registrieren
               </Link>
 
               <Link href="/sign-in" className={classes.btn}>
-                Sign In
+                Anmelden
               </Link>
             </div>
           )}
@@ -40,19 +43,19 @@ export default async function Home() {
         <div className={classes.cards}>
           <Card
             image={pcImg}
-            title="Use your device to send location"
-            text="Its easy and convenient. Be sure that you will become a help when you need it."
+            title="Verwenden Sie Ihr Gerät, um den Standort zu senden"
+            text="Es ist einfach und bequem. Seien Sie sicher, dass Sie helfen werden, wenn Sie es brauchen."
           />
           <Card
             image={speedImg}
-            title="It's very fast and easy to use"
-            text="Danger-Button right in yout pocket! "
+            title="Es ist sehr schnell und einfach zu bedienen"
+            text="Danger-Button direkt in Ihrer Tasche!"
           />
 
           <Card
             image={diamondImg}
-            title="It's free!"
-            text="Safety of your family is priceless."
+            title="Es ist kostenlos!"
+            text="Die Sicherheit Ihrer Familie ist unbezahlbar."
           />
         </div>
       </main>
