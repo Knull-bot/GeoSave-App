@@ -19,7 +19,7 @@ export default async function Home() {
       <main className={classes.main}>
         <div className={classes["main-title"]}>
           <Image alt="logo" src={logo}></Image>
-          <h1 className={classes.title}>WWillkommen bei GeoSave</h1>
+          <h1 className={classes.title}>Willkommen bei GeoSave</h1>
           <p className={classes.description}>
             Ihr persönlicher Alarmknopf für Ihre eigene Sicherheit und die Ihrer
             Angehörigen.
