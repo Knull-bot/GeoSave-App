@@ -3,7 +3,7 @@ import AllTasksClient from "@/src/components/AllTasksClient";
 
 export default async function AllTasksPage() {
   "use server";
-  const eventsData = await getEvents();
+  const eventsDataLast = await getEvents();
 
-  return <AllTasksClient events={eventsData} />;
+  return <AllTasksClient events={eventsDataLast} />;
 }
