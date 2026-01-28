@@ -1,4 +1,4 @@
-import { supabase } from "@/src/lib/supabase";
+import { supabaseAdmin } from "@/src/lib/supabaseServer";
 
 import { getOSMData } from "../../../src/utils/getInfoOpenStreet";
 import { GoogleGenAI } from "@google/genai";
@@ -66,7 +66,7 @@ Die Antwort soll realistisch, zurückhaltend und nicht dramatisierend formuliert
     });
     const customDate = `${formattedDate} ${formattedTime}`;
 
-    await supabase.from("events").insert([
+    await supabaseAdmin.from("events").insert([
       {
         latitude,
         longitude,
@@ -93,7 +93,7 @@ Die Antwort soll realistisch, zurückhaltend und nicht dramatisierend formuliert
     });
     const customDate = `${formattedDate} ${formattedTime}`;
 
-    await supabase.from("events").insert([
+    await supabaseAdmin.from("events").insert([
       {
         latitude,
         longitude,

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import MapWrapper from "./MapWrapper";
 import classes from "./AllTasksClient.module.css";
-import { supabase } from "../lib/supabase";
+import { supabase } from "../lib/supabaseClient";
 
 type Props = {
   events: any[];

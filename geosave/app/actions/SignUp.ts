@@ -1,6 +1,6 @@
 "use server";
 import bcrypt from "bcrypt";
-import { supabase } from "@/src/lib/supabase";
+import { supabase } from "@/src/lib/supabaseClient";
 import { redirect } from "next/navigation";
 
 export async function signUp(prevState: FormData, formData: FormData) {

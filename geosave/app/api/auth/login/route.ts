@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "@/src/lib/supabase";
+import { supabase } from "@/src/lib/supabaseClient";
 import bcrypt from "bcrypt";
 import { generateToken } from "@/src/lib/jwt";
 
