@@ -27,8 +27,6 @@ export default function SignIn() {
       return;
     }
 
-    console.log(data.role);
-
     if (data.role === "admin") {
       window.location.href = "/all-tasks";
     } else {

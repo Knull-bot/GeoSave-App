@@ -17,9 +17,30 @@ export async function POST(req: Request) {
         .join(", ");
     }).join("; ");
 
-    const prompt = `Есть координаты lat=${latitude}, lng=${longitude} и время ${date.toISOString()}. Объекты вокруг: ${
-      OSMtext || "нет объектов"
-    }. Предположи, что могло произойти в этом месте в это время (тревожный сигнал). Ответ краткий. Сразу скажу что не нужно ссылаться на полученные тобой данные. Твой ответ пойдет прямо на фронтенд, желательно начинай с "предположительно". В числе опасностей отправленных из дома может быть как пожар так и если ночное время суток - домашнее или бытовое насилие. Ответ дай на немецком языке.`;
+    const prompt = `
+Es liegen folgende Informationen vor:
+- Koordinaten: lat=${latitude}, lng=${longitude}
+- Datum und Uhrzeit: ${date.toISOString()}
+- Umgebung (Objekte in der Nähe): ${OSMtext || "keine bekannten Objekte"}
+
+Aufgabe:
+Gib eine kurze, vorsichtige Einschätzung, welche Art von Situation an diesem Ort zu dieser Zeit vermutlich vorliegen könnte, die einen Hilferuf oder Alarm ausgelöst hat.
+
+Regeln:
+- Beginne die Antwort mit „Vermutlich“.
+- Antworte ausschließlich auf Deutsch.
+- Berücksichtige Umgebung, Tageszeit und Wochentag.
+- Beschreibe die Situation allgemein und sachlich, ohne konkrete Schuldzuweisungen oder detaillierte Gewaltbeschreibungen.
+- Erwähne keine Datenquellen und keine technischen Details.
+
+Orientierung:
+- Wohnumfeld tagsüber: eher technische, medizinische oder haushaltsbezogene Vorfälle.
+- Wohnumfeld abends oder nachts: eher private Konfliktsituationen oder ungewöhnliche Ereignisse.
+- Nähe zu Freizeit- oder Gastronomiebereichen am Abend/Wochenende: eher soziale Spannungen oder sicherheitsrelevante Zwischenfälle.
+- Öffentliche oder verkehrsnahe Orte: mögliche Unfälle oder Störungen.
+
+Die Antwort soll realistisch, zurückhaltend und nicht dramatisierend formuliert sein.
+`;
 
     let message = undefined;
     try {
@@ -31,8 +52,6 @@ export async function POST(req: Request) {
     } catch {
       message = "Free Gemini ai model was overloaded.";
     }
-
-    console.log(message);
 
     const formattedDate = date.toLocaleDateString(undefined, {
       day: "numeric",
@@ -49,7 +68,7 @@ export async function POST(req: Request) {
 
     await client.query(
       "INSERT INTO events (latitude, longitude, created_at, message, user_id) VALUES($1, $2, $3, $4, $5)",
-      [latitude, longitude, customDate, message, userId]
+      [latitude, longitude, customDate, message, userId],
     );
     return new Response(JSON.stringify({ success: true, message: "Succes!" }), {
       status: 200,
@@ -75,19 +94,20 @@ export async function POST(req: Request) {
         latitude,
         longitude,
         customDate,
-        "Information about accident was failed to send.",
+        "Information wurde nicht gesendet, da ein Fehler aufgetreten ist",
         userId,
-      ]
+      ],
     );
     return new Response(
       JSON.stringify({
         success: true,
-        message: "Information about accident was failed to send",
+        message:
+          "Information wurde nicht gesendet , da ein Fehler aufgetreten ist",
       }),
       {
         status: 200,
         headers: { "Content-Type": "application/json" },
-      }
+      },
     );
   }
 }

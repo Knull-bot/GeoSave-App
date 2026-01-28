@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
   if (!login || !password) {
     return NextResponse.json(
       { error: "Login und Passwort sind erforderlich" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
   if (!user) {
     return NextResponse.json(
       { error: "Benutzer nicht gefunden" },
-      { status: 401 }
+      { status: 401 },
     );
   }
 
@@ -51,8 +51,6 @@ export async function POST(req: NextRequest) {
     path: "/",
     maxAge: 60 * 60,
   });
-
-  console.log(`User ${login} ${user.id} logged in successfully.`);
 
   return response;
 }

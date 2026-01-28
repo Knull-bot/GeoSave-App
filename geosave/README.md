@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+GeoSave – Location-basiertes Notfall- und Verwaltungs-Tool
 
-## Getting Started
+GeoSave ist eine moderne Webanwendung, die es Benutzern ermöglicht, Standorte zu melden, Anfragen zu verwalten und Daten übersichtlich über Dashboards darzustellen. Das Projekt kombiniert Next.js, TypeScript, PostgreSQL, JWT-Authentifizierung, Leaflet-Karten und modulares CSS für eine saubere und wartbare Gestaltung.
 
-First, run the development server:
+Features:
+Backend & Datenmanagement:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Vollständig implementierte Datenbanktabellen für Anfragen mit Anbindung an das Backend.
+Benutzerverwaltung inklusive Registrierung und Rollen (User / Admin).
+Optimierte Datenbankabfragen und Datenanzeige für schnelle und effiziente Nutzung.
+Fehlerbehandlung mit try/catch in allen API-Requests.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Authentifizierung & Sicherheit:
+JWT-basierte Authentifizierung für sichere Anmeldung.
+Benutzer- und Adminzugriffe korrekt gesteuert.
+Logout-Funktion implementiert, um Sitzungen sicher zu beenden.
+Frontend & UI/UX
+Titel- und Landingpage professionell gestaltet.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Admin-Dashboard: Alle Anfragen übersichtlich dargestellt, inklusive von Benutzern gemeldeter Standorte.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Benutzerseite: Zentrale Buttons für schnelle Aktionen.
+Formulare vollständig stilisiert mit modularem CSS für sauberes Styling.
+Popups zur Bestätigung nach Standortmeldungen.
+Responsive Design für Desktop und mobile Endgeräte.
+Leaflet-Karten zur visuellen Darstellung von Standorten.
 
-## Learn More
+Intelligente Analyse:
+Auf Grundlage der Koordinaten und Zeitstempel jeder gemeldeten Position versucht der Dienst mithilfe von Google Gemini AI, eine realistische Einschätzung zu erstellen, was an diesem Ort zu dieser Zeit passiert sein könnte.
+Das Ergebnis wird zusammen mit der Meldung gespeichert und auf der Adminseite angezeigt.
+Priorisierung von möglichen Ereignissen basierend auf Umgebung, Tageszeit und Wochentag.
 
-To learn more about Next.js, take a look at the following resources:
+Dashboards & Datenvisualisierung
+Individuelle Dashboards für Benutzer und Admins.
+Effiziente Darstellung von Anfragen.
+Alle wichtigen Funktionalitäten mobil zugänglich, inklusive zentraler Buttons auf der Benutzerseite.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Nutzung:
+Registrierung und Login über die Benutzeroberfläche.
+Standort melden → Popup-Bestätigung erscheint.
+Admins haben Zugriff auf alle Anfragen, inklusive der durch Gemini analysierten Ereignisse.
+Dashboards zeigen individuelle Daten abhängig von der Rolle.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Tech Stack
+Frontend: Next.js, TypeScript, modulares CSS, Leaflet
+Backend: Next.js API-Routen, Node.js, TypeScript
+Datenbank: PostgreSQL
+Authentifizierung: JWT
+KI-Integration: Google Gemini AI (für Ereignisvorhersage)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Lizenz
+Dieses Projekt ist unter der MIT-Lizenz veröffentlicht.

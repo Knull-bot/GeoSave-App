@@ -1,6 +1,6 @@
 import jwt, { SignOptions } from "jsonwebtoken";
 
-export interface payload {
+export interface Payload {
   id: number;
   role: "user" | "admin";
   email?: string;
@@ -9,8 +9,8 @@ export interface payload {
 const SECRET = process.env.JWT_SECRET;
 
 export function generateToken(
-  payload: payload,
-  expiresIn: string | number = "1h"
+  payload: Payload,
+  expiresIn: `${number}${"s" | "m" | "h" | "d" | "w"}` | number = "1h",
 ): string {
   const options: SignOptions = { expiresIn };
   return jwt.sign(payload, SECRET!, options);

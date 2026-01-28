@@ -80,8 +80,7 @@ export async function signUp(prevState: FormData, formData: FormData) {
 
   await client.query(
     "INSERT INTO users (username, password, city, role, street, house, plz) VALUES ($1, $2, $3, $4, $5, $6, $7)",
-    [user.login, hashedPassword, user.city, "user", user.street, house, plz]
+    [user.login, hashedPassword, user.city, "user", user.street, house, plz],
   );
   redirect("/sign-in");
-  console.log(user);
 }

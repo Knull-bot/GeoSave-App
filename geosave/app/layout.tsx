@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import CookieConsent from "../src/components/CookieConsent";
 import Footer from "../src/components/Footer";
-import { cookies } from "next/headers";
-import { verifyToken } from "@/src/lib/jwt";
 import { HeaderController } from "../src/components/HeaderController";
 import { Roboto, BBH_Sans_Bartle } from "next/font/google";
 
@@ -29,21 +27,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies();
-  console.log(cookieStore);
-  const token = cookieStore.get("jwt")?.value;
-
-  let role = null;
-
-  if (token) {
-    try {
-      const payload = verifyToken(token);
-      role = payload?.role;
-    } catch (e) {
-      console.error("JWT verification failed:", e);
-    }
-  }
-
   return (
     <html lang="en">
       <body className={`${roboto.variable} ${bbh.variable}`}>
