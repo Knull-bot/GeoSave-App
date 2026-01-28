@@ -14,28 +14,22 @@ type Event = {
   username?: string;
 };
 
-export default function AllTasksClient() {
-  const [events, setEvents] = useState<Event[]>([]);
+type Props = {
+  events: Event[];
+};
+
+export default function AllTasksClient({ events: initialEvents }: Props) {
+  const [events, setEvents] = useState<Event[]>(initialEvents);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    const fetchEvents = async () => {
-      const { data, error } = await supabase.from("events").select("*");
-      if (error) {
-        console.error("Error fetching events:", error);
-        return;
-      }
-      setEvents(data ?? []);
-    };
-    fetchEvents();
-
-    const channel = supabase.channel("events_changes", {
-      config: { private: false },
-    });
+    // Приватный канал не нужен, так как ключ анонимный
+    const channel = supabase.channel("events_changes");
 
     const handleInsert = (msg: any) => {
-      const newEvent: Event = msg.payload?.new ?? msg.new ?? msg.record ?? msg;
+      const payload = msg?.payload ?? msg;
+      const newEvent: Event = payload?.new ?? payload?.record ?? payload;
       if (!newEvent?.id) return;
       setEvents((prev) => [
         newEvent,
@@ -44,8 +38,8 @@ export default function AllTasksClient() {
     };
 
     const handleUpdate = (msg: any) => {
-      const updatedEvent: Event =
-        msg.payload?.new ?? msg.new ?? msg.record ?? msg;
+      const payload = msg?.payload ?? msg;
+      const updatedEvent: Event = payload?.new ?? payload?.record ?? payload;
       if (!updatedEvent?.id) return;
       setEvents((prev) =>
         prev.map((e) => (e.id === updatedEvent.id ? updatedEvent : e)),
@@ -53,7 +47,8 @@ export default function AllTasksClient() {
     };
 
     const handleDelete = (msg: any) => {
-      const deletedEvent: Event = msg.payload?.old ?? msg.old ?? msg;
+      const payload = msg?.payload ?? msg;
+      const deletedEvent: Event = payload?.old ?? payload;
       if (!deletedEvent?.id) return;
       setEvents((prev) => prev.filter((e) => e.id !== deletedEvent.id));
     };
