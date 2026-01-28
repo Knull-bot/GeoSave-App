@@ -24,25 +24,39 @@ export default function AllTasksClient({ events }: Props) {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    const subscription = supabase
+    const channel = supabase
       .channel("events_changes")
       .on(
         "postgres_changes",
         { event: "*", schema: "public", table: "events" },
-        (payload) => {
+        (payload: any) => {
           const newEvent = payload.new as Event;
           if (!newEvent?.id) return;
+
           setEvents((prevEvents) => {
-            return [
-              newEvent,
-              ...prevEvents.filter((e) => e.id !== newEvent.id),
-            ];
+            const existsIndex = prevEvents.findIndex(
+              (e) => e.id === newEvent.id,
+            );
+
+            if (payload.eventType === "INSERT") {
+              return [newEvent, ...prevEvents];
+            }
+            if (payload.eventType === "UPDATE") {
+              if (existsIndex >= 0) prevEvents[existsIndex] = newEvent;
+              return [...prevEvents];
+            }
+            if (payload.eventType === "DELETE") {
+              if (existsIndex >= 0) prevEvents.splice(existsIndex, 1);
+              return [...prevEvents];
+            }
+            return prevEvents;
           });
         },
       )
       .subscribe();
+
     return () => {
-      supabase.removeChannel(subscription);
+      supabase.removeChannel(channel);
     };
   }, []);
 
