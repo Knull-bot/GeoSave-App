@@ -1,20 +1,54 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MapWrapper from "./MapWrapper";
 import classes from "./AllTasksClient.module.css";
+import { supabase } from "../lib/supabase";
 
 type Props = {
   events: any[];
 };
 
+type Event = {
+  id: number;
+  latitude: number;
+  longitude: number;
+  created_at: string;
+  message: string;
+  username?: string;
+};
+
 export default function AllTasksClient({ events }: Props) {
+  const [eventsActual, setEvents] = useState(events);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
-  console.log(events);
 
-  const sortedEvents = [...events].sort(
+  useEffect(() => {
+    const subscription = supabase
+      .channel("events_changes")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "events" },
+        (payload) => {
+          const newEvent = payload.new as Event;
+          if (!newEvent?.id) return;
+          setEvents((prevEvents) => {
+            return [
+              newEvent,
+              ...prevEvents.filter((e) => e.id !== newEvent.id),
+            ];
+          });
+        },
+      )
+      .subscribe();
+    return () => {
+      supabase.removeChannel(subscription);
+    };
+  }, []);
+
+  const itemsPerPage = 5;
+
+  const sortedEvents = [...eventsActual].sort(
     (a, b) =>
       new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
   );
