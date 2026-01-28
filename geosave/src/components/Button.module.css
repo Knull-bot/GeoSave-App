@@ -1,0 +1,135 @@
+.button {
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  background-image: linear-gradient(135deg, #f7313a, #ff7e5f);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 16rem;
+  height: 16rem;
+  cursor: pointer;
+  animation: pulse 1.5s infinite;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.45),
+    rgba(0, 0, 0, 0.7)
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: linear-gradient(135deg, #ffffff, #f4f7fa);
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  min-width: 320px;
+  max-width: 90%;
+  text-align: center;
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.6);
+
+  animation: modalIn 0.35s ease-out;
+}
+
+.success {
+  color: #2e7d32;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.error {
+  color: #c62828;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.modal button {
+  all: unset;
+  cursor: pointer;
+
+  padding: 0.6rem 1.5rem;
+  border-radius: 999px;
+
+  background-image: linear-gradient(135deg, #f7313a, #ff7e5f);
+  color: white;
+  font-weight: 600;
+  font-size: 0.95rem;
+
+  box-shadow: 0 8px 20px rgba(247, 49, 58, 0.4);
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.modal button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(247, 49, 58, 0.55);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  filter: grayscale(40%) brightness(0.85);
+  animation: none;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(0, 112, 243, 0.7);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 112, 243, 0.5);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(0, 112, 243, 0);
+  }
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.btn {
+  all: unset;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #95cbdf;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  gap: 1rem;
+  margin: 1rem;
+}
+
+.btn:hover {
+  background-color: #4679c1;
+}
