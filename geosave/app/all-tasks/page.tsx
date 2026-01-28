@@ -2,7 +2,8 @@ import { getEvents } from "@/src/lib/events";
 import AllTasksClient from "@/src/components/AllTasksClient";
 
 export default async function AllTasksPage() {
-  const events = await getEvents();
+  "use server";
+  const eventsData = await getEvents();
 
-  return <AllTasksClient events={events} />;
+  return <AllTasksClient events={eventsData} />;
 }
