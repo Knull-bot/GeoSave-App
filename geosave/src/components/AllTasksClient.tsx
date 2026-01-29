@@ -5,6 +5,10 @@ import MapWrapper from "./MapWrapper";
 import classes from "./AllTasksClient.module.css";
 import { supabase } from "../lib/supabaseClient";
 
+type Props = {
+  events: any[];
+};
+
 type Event = {
   id: number;
   latitude: number;
@@ -14,54 +18,42 @@ type Event = {
   username?: string;
 };
 
-type Props = {
-  events: Event[];
-};
-
-export default function AllTasksClient({ events: initialEvents }: Props) {
-  const [events, setEvents] = useState<Event[]>(initialEvents);
+export default function AllTasksClient({ events }: Props) {
+  const [eventsActual, setEvents] = useState(events);
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    // Приватный канал не нужен, так как ключ анонимный
-    const channel = supabase.channel("events_changes");
+    const channel = supabase
+      .channel("events_changes")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "events" },
+        (payload: any) => {
+          const newEvent = payload.new as Event;
+          if (!newEvent?.id) return;
 
-    const handleInsert = (msg: any) => {
-      const payload = msg?.payload ?? msg;
-      const newEvent: Event = payload?.new ?? payload?.record ?? payload;
-      if (!newEvent?.id) return;
-      setEvents((prev) => [
-        newEvent,
-        ...prev.filter((e) => e.id !== newEvent.id),
-      ]);
-    };
+          setEvents((prevEvents) => {
+            const existsIndex = prevEvents.findIndex(
+              (e) => e.id === newEvent.id,
+            );
 
-    const handleUpdate = (msg: any) => {
-      const payload = msg?.payload ?? msg;
-      const updatedEvent: Event = payload?.new ?? payload?.record ?? payload;
-      if (!updatedEvent?.id) return;
-      setEvents((prev) =>
-        prev.map((e) => (e.id === updatedEvent.id ? updatedEvent : e)),
-      );
-    };
-
-    const handleDelete = (msg: any) => {
-      const payload = msg?.payload ?? msg;
-      const deletedEvent: Event = payload?.old ?? payload;
-      if (!deletedEvent?.id) return;
-      setEvents((prev) => prev.filter((e) => e.id !== deletedEvent.id));
-    };
-
-    channel.on("broadcast", { event: "INSERT" }, handleInsert);
-    channel.on("broadcast", { event: "UPDATE" }, handleUpdate);
-    channel.on("broadcast", { event: "DELETE" }, handleDelete);
-
-    channel.subscribe((status, err) => {
-      if (status === "SUBSCRIBED")
-        console.log("Realtime subscribed to events_changes");
-      if (err) console.error("Subscribe error", err);
-    });
+            if (payload.eventType === "INSERT") {
+              return [newEvent, ...prevEvents];
+            }
+            if (payload.eventType === "UPDATE") {
+              if (existsIndex >= 0) prevEvents[existsIndex] = newEvent;
+              return [...prevEvents];
+            }
+            if (payload.eventType === "DELETE") {
+              if (existsIndex >= 0) prevEvents.splice(existsIndex, 1);
+              return [...prevEvents];
+            }
+            return prevEvents;
+          });
+        },
+      )
+      .subscribe();
 
     return () => {
       supabase.removeChannel(channel);
@@ -70,7 +62,7 @@ export default function AllTasksClient({ events: initialEvents }: Props) {
 
   const itemsPerPage = 5;
 
-  const sortedEvents = [...events].sort(
+  const sortedEvents = [...eventsActual].sort(
     (a, b) =>
       new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
   );
